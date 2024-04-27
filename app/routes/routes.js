@@ -5,7 +5,7 @@ const apiController = require("../controllers/apiController");
 // Multer configuration
 
 // Define routes
-router.post("/createDocument", apiController.CreateCoument);
+router.post("/createDocument", apiController.createDocument);
 router.get("/searchDocuments", apiController.searchDocuments);
 router.get("/", apiController.Status);
 
