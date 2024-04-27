@@ -1,9 +1,9 @@
 const express = require("express");
-const mongoose = require("mongoose");
 const cors = require("cors");
-const dbConfig = require("./app/config/db.config");
+const apiRoutes = require("./app/routes/routes");
+const connectDB = require("./app/common/helper");
+
 const app = express();
-const Document = require("./app/models/document");
 
 // Middleware setup
 app.use(
@@ -16,18 +16,8 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Database connection
-const dbUrl = dbConfig.url;
-mongoose
-  .connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log("Connected to the database!"))
-  .catch((err) => {
-    console.error("Cannot connect to the database!", err);
-    process.exit(1);
-  });
-
-// Importing routes
-const apiRoutes = require("./app/routes/routes");
+// Connect to the database
+connectDB();
 
 // Using routes
 app.use("/api", apiRoutes);
@@ -38,7 +28,7 @@ app.get("/", (req, res) => {
 });
 
 // Starting the server
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
