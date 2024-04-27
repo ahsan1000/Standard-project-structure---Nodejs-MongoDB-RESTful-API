@@ -1,4 +1,4 @@
-# "name": "Standard-project-structure---nodejs-mongodb-restful-api"
+# Standard-project-structure---nodejs-mongodb-restful-api
 
 Standard project structure, including folders and files, for creating a Nodejs MongoDB RESTful API.
 
